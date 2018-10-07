@@ -10,14 +10,24 @@
 int	main(int argc, char **argv)
 {
 	int	fd;
-	char	**line;
+	char	*line;
 
 	fd = open(argv[argc - 1], O_RDONLY);
-	if(fd == -1)
+	if (argc == 1)
+	{
+		ft_putstr_fd("usage : ./test_gnl xFiles\n", 1);
+		return (0);
+	}
+	else if(fd == -1)
 	{
 		ft_putstr_fd("erreur d'ouverture de fichier\n", 2);
 		return (0);
 	}
-	get_next_line(fd, line);
+	get_next_line(fd, &line);
+	ft_putstr(line);
+	get_next_line(fd, &line);
+	ft_putstr(line);
+	get_next_line(fd, &line);
+	ft_putstr(line);
 	return (0);
 }

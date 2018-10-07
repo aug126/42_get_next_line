@@ -1,6 +1,6 @@
 NAME=test_gnl
 CFLAGS=-Wall -Wextra -Werror
-SRC=rendu/get_next_line.c rendu/main.c
+SRC=rendu/get_next_line.c main.c
 OBJ=$(SRC:.c=.o)
 
 all: $(NAME)
@@ -10,12 +10,12 @@ $(NAME): $(OBJ)
 	gcc -o test_gnl $(OBJ) -L rendu/libft/ -lft
 
 $(OBJ): %.o:%.c
-	gcc $(CFLAGS) -I rendu/libft/includes/ -o $@ -c $<
-clean: 
+	gcc $(CFLAGS) -I rendu/libft/includes/ -I rendu/ -o $@ -c $<
+clean:
 	make -C rendu/libft/ clean
 	rm -rf $(OBJ)
 
-fclean: clean 
+fclean: clean
 	make -C rendu/libft/ fclean
 	rm -rf $(NAME)
 re: fclean
