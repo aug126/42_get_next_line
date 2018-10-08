@@ -3,10 +3,12 @@ CFLAGS=-Wall -Wextra -Werror
 SRC=rendu/get_next_line.c main.c
 OBJ=$(SRC:.c=.o)
 
-all: $(NAME)
+all: $(NAME) test
+
+test: 
+	make -C rendu/libft/
 
 $(NAME): $(OBJ)
-	make -C rendu/libft/
 	gcc -o test_gnl $(OBJ) -L rendu/libft/ -lft
 
 $(OBJ): %.o:%.c

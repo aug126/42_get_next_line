@@ -7,10 +7,10 @@
 
 #include <stdlib.h>
 
-int	main(int argc, char **argv)
+int main(int argc, char **argv)
 {
-	int	fd;
-	char	*line;
+	int fd;
+	char *line;
 
 	fd = open(argv[argc - 1], O_RDONLY);
 	if (argc == 1)
@@ -18,16 +18,19 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("usage : ./test_gnl xFiles\n", 1);
 		return (0);
 	}
-	else if(fd == -1)
+	else if (fd == -1)
 	{
 		ft_putstr_fd("erreur d'ouverture de fichier\n", 2);
 		return (0);
 	}
 	get_next_line(fd, &line);
 	ft_putstr(line);
+	ft_putstr("\n");
 	get_next_line(fd, &line);
 	ft_putstr(line);
+	ft_putstr("\n");
 	get_next_line(fd, &line);
 	ft_putstr(line);
+	ft_putstr("\n");
 	return (0);
 }

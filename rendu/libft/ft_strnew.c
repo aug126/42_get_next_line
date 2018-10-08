@@ -12,14 +12,13 @@
 
 #include <stdlib.h>
 
-char	*ft_strnew(size_t size)
+char *ft_strnew(size_t size)
 {
-	char	*str;
+	char *str;
 
-	str = (char*)malloc(sizeof(*str) * size + 1);
+	str = (char *)malloc(sizeof(*str) * size + 1);
 	if (str)
 	{
-		str[size + 1] = '\0';
 		str[size] = '\0';
 		while (size-- > 0)
 			str[size] = '\0';

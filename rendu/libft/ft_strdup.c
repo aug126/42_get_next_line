@@ -16,11 +16,12 @@
  ** alloue de la memoire sur un poiteur pour dubliquer la string *s
 */
 
-char	*ft_strdup(const char *s)
+char *ft_strdup(const char *s)
 {
-	char	*dup;
-	size_t	i;
-
+	char *dup;
+	size_t i;
+	if (!s)					 // added
+		return (NULL); // aded
 	i = ft_strlen(s);
 	dup = ft_strnew(i);
 	if (!dup)
