@@ -3,16 +3,16 @@ CFLAGS=-Wall -Wextra -Werror
 SRC=rendu/get_next_line.c main.c
 OBJ=$(SRC:.c=.o)
 
-all: $(NAME) test
+all: libft $(NAME)
 
-test: 
+libft: 
 	make -C rendu/libft/
 
 $(NAME): $(OBJ)
 	gcc -o test_gnl $(OBJ) -L rendu/libft/ -lft
-
-$(OBJ): %.o:%.c
+$(OBJ): %.o:%.c rendu/get_next_line.h
 	gcc $(CFLAGS) -I rendu/libft/includes/ -I rendu/ -o $@ -c $<
+rendu/get_next_line.h:
 clean:
 	make -C rendu/libft/ clean
 	rm -rf $(OBJ)
@@ -24,3 +24,8 @@ re: fclean
 	make
 
 .PHONY: re fclean clean all
+
+test:
+	./test_gnl file_test.txt
+
+.PHONY: test

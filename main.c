@@ -25,12 +25,11 @@ int main(int argc, char **argv)
 	}
 	get_next_line(fd, &line);
 	ft_putstr(line);
-	ft_putstr("\n");
 	get_next_line(fd, &line);
 	ft_putstr(line);
-	ft_putstr("\n");
 	get_next_line(fd, &line);
 	ft_putstr(line);
-	ft_putstr("\n");
+	get_next_line(fd, &line);
+	ft_putstr(line);
 	return (0);
 }
