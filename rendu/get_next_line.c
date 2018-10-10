@@ -4,9 +4,11 @@ int ready_copy(char **line, int nb_char_piece)
 {
 	char *temp;
 
-	temp = ft_strdup(*line);
+	if (!(temp = ft_strdup(*line)) && *line)
+		return (-1);
 	free(*line);
-	*line = ft_strnew(nb_char_piece + ft_strlen(temp));
+	if ((*line = ft_strnew(nb_char_piece + ft_strlen(temp))) == NULL)
+		return (-1);
 	ft_memcpy(*line, temp, ft_strlen(temp));
 	free(temp);
 	return (0);
@@ -16,7 +18,8 @@ int while_no_n(char **line, char *piece_line, const int fd)
 {
 	int readed;
 
-	ready_copy(line, ft_strlen(piece_line));
+	if (ready_copy(line, ft_strlen(piece_line)) == -1)
+		return (-1);
 	ft_strcat(*line, piece_line);
 	if ((readed = read(fd, piece_line, BUFF_SIZE)) == -1)
 		return (-1);
@@ -40,7 +43,8 @@ int get_next_line(const int fd, char **line)
 	}
 
 	nb_char_topass = ft_strchr(piece_line, '\n') - piece_line;
-	ready_copy(line, nb_char_topass);
+	if (ready_copy(line, nb_char_topass) == -1)
+		return (-1);
 	ft_strncat(*line, piece_line, nb_char_topass);
 	ft_strcpy(piece_line, piece_line + nb_char_topass + 1);
 	return (1);

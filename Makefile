@@ -26,6 +26,6 @@ re: fclean
 .PHONY: re fclean clean all
 
 test:
-	./test_gnl file_test.txt
+	@./test_gnl file1.txt
 
 .PHONY: test
