@@ -6,12 +6,13 @@
 #include <fcntl.h>
 
 #include <stdlib.h>
+#include <stdio.h>
 
 int main(int argc, char **argv)
 {
 	int fd;
 	char *line;
-//	int		value;
+	int value;
 
 	fd = open(argv[argc - 1], O_RDONLY);
 	if (argc == 1)
@@ -24,12 +25,21 @@ int main(int argc, char **argv)
 		ft_putstr_fd("erreur d'ouverture de fichier\n", 2);
 		return (0);
 	}
+	/*
 	while ((value = get_next_line(fd, &line)) == 1)
 	{
-		ft_putstr(line);
-		ft_putstr("\n");
+		printf("%d : %s\n", value, line);
 	}
-	get_next_line(fd, &line);
-	ft_putstr(line);
+	*/
+	value = get_next_line(fd, &line);
+	printf("%d : %s\n", value, line);
+	value = get_next_line(fd, &line);
+	printf("%d : %s\n", value, line);
+	value = get_next_line(fd, &line);
+	printf("%d : %s\n", value, line);
+	value = get_next_line(fd, &line);
+	printf("%d : %s\n", value, line);
+	value = get_next_line(fd, &line);
+	printf("%d : %s\n", value, line);
 	return (0);
 }
