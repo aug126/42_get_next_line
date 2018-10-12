@@ -25,21 +25,19 @@ int main(int argc, char **argv)
 		ft_putstr_fd("erreur d'ouverture de fichier\n", 2);
 		return (0);
 	}
-	/*
-	while ((value = get_next_line(fd, &line)) == 1)
-	{
-		printf("%d : %s\n", value, line);
-	}
-	*/
 	value = get_next_line(fd, &line);
-	printf("%d : %s\n", value, line);
+	printf("%s\n", line);
 	value = get_next_line(fd, &line);
-	printf("%d : %s\n", value, line);
+	printf("%s\n", line);
 	value = get_next_line(fd, &line);
-	printf("%d : %s\n", value, line);
+	printf("%s\n", line);
 	value = get_next_line(fd, &line);
-	printf("%d : %s\n", value, line);
+	printf("%s\n", line);
 	value = get_next_line(fd, &line);
-	printf("%d : %s\n", value, line);
+	printf("%s\n", line);
+	value = get_next_line(fd, &line);
+	printf("%s\n", line);
+	value = get_next_line(fd, &line);
+	printf("%s\n", line);
 	return (0);
 }

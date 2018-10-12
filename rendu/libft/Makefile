@@ -71,7 +71,7 @@ $(NAME): $(OBJ)
 	ar rc $@ $^
 
 $(OBJ): %.o:%.c
-	$(CC) -o $@ -c $< $(CFLAGS) -I includes/
+	$(CC) -o $@ -c $< $(CFLAGS) -I ./includes/
 # $(IDFLAGS)
 .PHONY: clean
 clean:

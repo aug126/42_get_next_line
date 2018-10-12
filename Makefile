@@ -1,5 +1,5 @@
 NAME=test_gnl
-CFLAGS=-Wall -Wextra -Werror
+CFLAGS=#-Wall -Wextra -Werror
 SRC=rendu/get_next_line.c main.c
 OBJ=$(SRC:.c=.o)
 
