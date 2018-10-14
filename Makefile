@@ -1,5 +1,5 @@
 NAME=test_gnl
-CFLAGS=-Wall -Wextra -Werror
+CFLAGS=#-Wall -Wextra -Werror
 SRC=rendu/get_next_line.c main.c
 OBJ=$(SRC:.c=.o)
 
@@ -8,7 +8,7 @@ all: libft $(NAME)
 libft: 
 	make -C rendu/libft/
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) ./rendu/libft/libft.a
 	gcc -o test_gnl $(OBJ) -L rendu/libft/ -lft
 $(OBJ): %.o:%.c rendu/get_next_line.h
 	gcc $(CFLAGS) -I rendu/libft/includes/ -I rendu/ -o $@ -c $<
