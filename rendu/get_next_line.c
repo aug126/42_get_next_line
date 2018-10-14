@@ -6,12 +6,11 @@
 /*   By: adoat <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 16:47:30 by adoat             #+#    #+#             */
-/*   Updated: 2018/10/14 16:53:56 by adoat            ###   ########.fr       */
+/*   Updated: 2018/10/14 19:16:01 by adoat            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 static char	*ft_strndup(char const *s, size_t n)
 {

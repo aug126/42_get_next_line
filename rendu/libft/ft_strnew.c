@@ -6,7 +6,7 @@
 /*   By: adoat <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/28 15:31:05 by adoat             #+#    #+#             */
-/*   Updated: 2018/07/28 15:31:06 by adoat            ###   ########.fr       */
+/*   Updated: 2018/10/14 19:14:17 by adoat            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ char	*ft_strnew(size_t size)
 	str = (char*)malloc(sizeof(*str) * size + 1);
 	if (str)
 	{
-		str[size + 1] = '\0';
 		str[size] = '\0';
 		while (size-- > 0)
 			str[size] = '\0';
