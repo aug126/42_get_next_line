@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */ /*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adoat <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/12 12:37:39 by adoat             #+#    #+#             */
+/*   Updated: 2018/10/12 12:44:44 by adoat            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 #include <stdio.h>
 
@@ -13,6 +24,22 @@ static char	*ft_strndup(char const *s, size_t n)
 		dup[i++] = s[i];
 	dup[i] = '\0';
 	return (dup);
+}
+
+static int	ready_copy(char **line, int nb_char_piece)
+{
+	char	*temp;
+
+	if (*line == NULL)
+		temp = ft_strdup("");
+	else if (!(temp = ft_strdup(*line)) && *line)
+		return (-1);
+	free(*line);
+	if ((*line = ft_strnew(nb_char_piece + ft_strlen(temp))) == NULL)
+		return (-1);
+	ft_memcpy(*line, temp, ft_strlen(temp));
+	free(temp);
+	return (0);
 }
 
 static char	*ft_strnjoin(char const *s1, char const *s2, size_t n)
