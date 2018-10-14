@@ -7,10 +7,13 @@ static char	*ft_strndup(char const *s, size_t n)
 	size_t	i;
 
 	if (!s || !(dup = ft_strnew(n)))
-		return (NULL); // ! pas protégé
+		return (NULL);
 	i = 0;
 	while (s[i] && n--)
-		dup[i++] = s[i];
+	{
+		dup[i] = s[i];
+		i++;
+	}
 	dup[i] = '\0';
 	return (dup);
 }
@@ -22,13 +25,19 @@ static char	*ft_strnjoin(char const *s1, char const *s2, size_t n)
 	int		j;
 
 	if (!s1 || !s2 || !(str = ft_strnew(n)))
-		return (NULL); // ! pas protégé
+		return (NULL);
 	i = 0;
 	while (s1[i] && n--)
-		str[i++] = s1[i];
+	{
+		str[i] = s1[i];
+		i++;
+	}
 	j = 0;
 	while (s2[j] && n--)
-		str[i + j++] = s2[j];
+	{
+		str[i + j] = s2[j];
+		j++;
+	}
 	str[i + j] = '\0';
 	return (str);
 }
@@ -39,16 +48,20 @@ static int	copy_reste(char **line, char *reste)
 	int		up_to_char;
 	char	*temp;
 
-	if (ret = ft_strchr(reste, '\n')) // possible de mettre sur 1 ligne
+	if ((ret = ft_strchr(reste, '\n'))) // possible de mettre sur 1 ligne
 		up_to_char = ret - reste;
 	else
 		up_to_char = ft_strlen(reste);
-	if (*line == NULL)
-		*line = ft_strndup(reste, up_to_char);
+	if (!(*line))
+	{
+		if (!(*line = ft_strndup(reste, up_to_char)))
+			return (-1);
+	}
 	else
 	{
 		temp = *line;
-		*line = ft_strnjoin(temp, reste, ft_strlen(temp) + up_to_char);
+		if (!(*line = ft_strnjoin(temp, reste, ft_strlen(temp) + up_to_char)))
+			return (-1);
 		ft_strdel(&temp);
 	}
 	ft_strcpy(reste, reste + up_to_char + 1);
@@ -67,7 +80,7 @@ int			get_next_line(const int fd, char **line)
 	/*
 	 * Verifications
 	 */
-	if (fd > OPEN_MAX || line == NULL || BUFF_SIZE <= 0)
+	if (fd < 0 || fd > OPEN_MAX || line == NULL || BUFF_SIZE <= 0)
 	{
 		printf("ERREUR du aux Vérifications !!!\n");
 		return (-1);
@@ -88,7 +101,7 @@ int			get_next_line(const int fd, char **line)
 	/*
 	 * copier l'ancien reste (ou le nouveau read) avant de boucler le read
 	 */
-	if (ret = copy_reste(line, reste[fd]))
+	if ((ret = copy_reste(line, reste[fd])))
 	{
 		/* 1 si \n trouvé sinon -1 si erreur donc return value */
 		if (ret == 1)
@@ -104,7 +117,7 @@ int			get_next_line(const int fd, char **line)
 	 */
 	while ((ret = read(fd, reste[fd], BUFF_SIZE)) > 0)
 	{
-		if (ret = copy_reste(line, reste[fd]))
+		if ((ret = copy_reste(line, reste[fd])))
 		{
 			if (ret == 1)
 				printf("N trouvé dans copy BOUCLE\n");

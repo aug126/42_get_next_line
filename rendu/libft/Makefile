@@ -1,5 +1,4 @@
 NAME=libft.a
-#SRC=$(wildcard ./*.c)
 SRC=	ft_memset.c \
 		ft_bzero.c \
 		ft_memcpy.c \
@@ -59,7 +58,7 @@ SRC=	ft_memset.c \
 		ft_lstmap.c \
 		ft_lstnew.c
 
-IDFLAGS=-I./
+IDFLAGS=-I ./includes/
 CC=gcc
 CFLAGS=-Wall -Wextra -Werror
 OBJ=$(SRC:.c=.o)
@@ -71,8 +70,7 @@ $(NAME): $(OBJ)
 	ar rc $@ $^
 
 $(OBJ): %.o:%.c
-	$(CC) -o $@ -c $< $(CFLAGS) -I includes/
-# $(IDFLAGS)
+	$(CC) -o $@ -c $< $(CFLAGS) $(IDFLAGS)
 .PHONY: clean
 clean:
 	rm -rf $(OBJ)
