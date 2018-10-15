@@ -6,7 +6,7 @@
 /*   By: adoat <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 16:47:30 by adoat             #+#    #+#             */
-/*   Updated: 2018/10/15 18:33:11 by adoat            ###   ########.fr       */
+/*   Updated: 2018/10/15 20:50:15 by adoat            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,10 @@ static int	copy_reste(char **line, char *reste)
 
 int			get_next_line(const int fd, char **line)
 {
-	static char	reste[OPEN_MAX][BUFF_SIZE + 2];
+	static char	reste[FILE_MAX][BUFF_SIZE + 2];
 	int			ret;
 
-	if (fd < 0 || fd >= OPEN_MAX || line == NULL || BUFF_SIZE <= 0)
+	if (fd < 0 || fd >= FILE_MAX || line == NULL || BUFF_SIZE <= 0)
 		return (-1);
 	*line = NULL;
 	if (!(reste[fd][0]) && (ret = read(fd, reste[fd], BUFF_SIZE)) <= 0)

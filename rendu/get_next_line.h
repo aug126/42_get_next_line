@@ -6,7 +6,7 @@
 /*   By: adoat <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 16:23:49 by adoat             #+#    #+#             */
-/*   Updated: 2018/10/14 19:21:25 by adoat            ###   ########.fr       */
+/*   Updated: 2018/10/15 20:50:32 by adoat            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define BUFF_SIZE 10
-# define OPEN_MAX 50
+# define BUFF_SIZE 100
+# define FILE_MAX 100
 
 int		get_next_line(const int fd, char **line);
 
