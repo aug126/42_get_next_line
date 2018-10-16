@@ -6,7 +6,7 @@
 /*   By: adoat <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 16:47:30 by adoat             #+#    #+#             */
-/*   Updated: 2018/10/15 20:50:15 by adoat            ###   ########.fr       */
+/*   Updated: 2018/10/16 21:01:14 by adoat            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,9 @@ static char	*ft_strndup(char const *s, size_t n)
 
 	if (!s || !(dup = ft_strnew(n)))
 		return (NULL);
-	i = 0;
-	while (s[i] && n--)
-	{
+	i = -1;
+	while (s[++i] && n--)
 		dup[i] = s[i];
-		i++;
-	}
 	dup[i] = '\0';
 	return (dup);
 }
@@ -37,18 +34,12 @@ static char	*ft_strnjoin(char const *s1, char const *s2, size_t n)
 
 	if (!s1 || !s2 || !(str = ft_strnew(n)))
 		return (NULL);
-	i = 0;
-	while (s1[i] && n--)
-	{
+	i = -1;
+	while (s1[++i] && n--)
 		str[i] = s1[i];
-		i++;
-	}
-	j = 0;
-	while (s2[j] && n--)
-	{
+	j = -1;
+	while (s2[++j] && n--)
 		str[i + j] = s2[j];
-		j++;
-	}
 	str[i + j] = '\0';
 	return (str);
 }
@@ -83,10 +74,10 @@ static int	copy_reste(char **line, char *reste)
 
 int			get_next_line(const int fd, char **line)
 {
-	static char	reste[FILE_MAX][BUFF_SIZE + 2];
+	static char	reste[OPEN_MAX][BUFF_SIZE + 2];
 	int			ret;
 
-	if (fd < 0 || fd >= FILE_MAX || line == NULL || BUFF_SIZE <= 0)
+	if (fd < 0 || fd >= OPEN_MAX || line == NULL)
 		return (-1);
 	*line = NULL;
 	if (!(reste[fd][0]) && (ret = read(fd, reste[fd], BUFF_SIZE)) <= 0)
@@ -94,13 +85,7 @@ int			get_next_line(const int fd, char **line)
 	if ((ret = copy_reste(line, reste[fd])))
 		return (ret);
 	while ((ret = read(fd, reste[fd], BUFF_SIZE)) > 0)
-	{
 		if ((ret = copy_reste(line, reste[fd])))
-		{
 			return (ret);
-		}
-	}
-	if (ret == -1)
-		return (-1);
-	return (1);
+	return (ret == -1 ? -1 : 1);
 }

@@ -14,11 +14,22 @@ int main(int argc, char **argv)
 	char *line;
 	int ret;
 
-	fd = open("file1.txt", O_RDONLY);
+	fd = 0;
+
+	while (fd < 256)
+	{
+		fd = open("file1", O_RDONLY);
+		printf("open %d\n", fd);
+		if (fd == -1)
+			return (0);
+	}
 
 	while ((ret = get_next_line(fd, &line)))
 		printf("%d : %s\n", ret, line);
 	printf("%d : %s\n", ret, line);
+
+	while (fd > 2)
+		close (fd--);
 
 	return (0);
 }
